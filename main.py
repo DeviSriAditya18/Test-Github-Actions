@@ -2,8 +2,6 @@
 import os
 import datetime
 
-# Manual Trigger removed
-
 def main():
     # Access secret from environment variable
     secret_value = os.environ.get('MY_SECRET', 'No secret found')
