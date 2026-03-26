@@ -1,0 +1,38 @@
+name: Python Hello World with Secret
+
+on:
+  # Run every 90 minutes
+  schedule:
+    - cron: '*/90 * * * *'  # Runs every 90 minutes
+  # Allow manual trigger from GitHub UI
+  workflow_dispatch:
+
+jobs:
+  hello-world:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Install dependencies (if any)
+      run: |
+        python -m pip install --upgrade pip
+        # Add any dependencies here if needed
+        # pip install -r requirements.txt
+
+    - name: Run Hello World Script
+      env:
+        # Access secret from GitHub Secrets
+        MY_SECRET: ${{ secrets.MY_SECRET }}
+      run: |
+        python main.py
+
+    - name: Display execution time
+      run: |
+        echo "Workflow executed at: $(date)"
