@@ -2,6 +2,7 @@
 import os
 import datetime
 
+# Manual Trigger removed
 
 def main():
     # Access secret from environment variable
